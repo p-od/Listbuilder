@@ -1,22 +1,26 @@
 package Listbuilder.Model;
 
+import java.util.UUID;
+
 public class Eintrag {
 
-    private int id;
+    private UUID id;
 
     private boolean erledigt;
 
     private String name;
 
-    public Eintrag() {
-
+    public Eintrag(String name) {
+        this.id = UUID.randomUUID();
+        this.erledigt = false;
+        this.name = name;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
