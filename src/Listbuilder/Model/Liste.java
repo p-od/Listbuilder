@@ -1,10 +1,11 @@
 package Listbuilder.Model;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Liste {
 
-    private int id;
+    private UUID id;
 
     private boolean erledigt;
 
@@ -12,15 +13,17 @@ public class Liste {
 
     private List<Eintrag> eintraege;
 
-    public Liste() {
-
+    public Liste(String name) {
+        this.id = UUID.randomUUID();
+        this.erledigt = false;
+        this.name = name;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
