@@ -1,3 +1,5 @@
+package Listbuilder.Model;
+
 import java.util.List;
 
 public class Liste {
