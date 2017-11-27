@@ -7,8 +7,8 @@ import Listbuilder.Model.Liste;
 import Listbuilder.Repository.EintragRepository;
 import Listbuilder.Repository.ListeRepository;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 public class Listbuilder {
 
@@ -81,20 +81,59 @@ public class Listbuilder {
                 printer.printEintrag(i + 1, eintraegeinListe.get(i));
             }
         }
-        showListeOptions();
+        showListeOptions(liste.getId());
     }
 
-    private void showListeOptions() {
+    private void showListeOptions(UUID listeId) {
         printer.printWhatToDoNext();
         printer.printListeOptions();
         int chosenOption = reader.readInteger();
-        executeListeOption(chosenOption);
+        executeListeOption(chosenOption, listeId);
     }
 
-    private void executeListeOption(int chosenListeOption) {
+    private void executeListeOption(int chosenListeOption, UUID listeId) {
         switch (chosenListeOption) {
-
+            case 1:
+                createEintrag(listeId);
+                break;
+            case 2:
+                setEintragErledigt(listeId);
+                break;
+            case 3:
+                setListeErledigt(listeId);
+                break;
+            case 4:
+                deleteListe(listeId);
+                break;
+            default:
+                break;
         }
+    }
+
+    private void createEintrag(UUID listeId) {
+        printer.printEnterEintragName();
+        String eintragName = reader.readString();
+        listeRepository.addEintragToListe(listeId, eintragName);
+        showListeDetails(listeRepository.getListe(listeId));
+    }
+
+    private void setEintragErledigt(UUID listeId) {
+        printer.printWhichEintragToMark();
+        int eintragToMark = reader.readInteger();
+        Liste listeToGetEintragMarked = listeRepository.getListe(listeId);
+        UUID eintragId = listeToGetEintragMarked.getEintraege().get(eintragToMark).getId();
+        eintragRepository.markEintragAsErledigt(eintragId);
+        showListeDetails(listeToGetEintragMarked);
+    }
+
+    private void setListeErledigt(UUID listeId) {
+        listeRepository.markListeAsErledigt(listeId);
+        showMainOptions();
+    }
+
+    private void deleteListe(UUID listeId) {
+        listeRepository.deleteListe(listeId);
+        showMainOptions();
     }
 
     public void clearScreen() {
