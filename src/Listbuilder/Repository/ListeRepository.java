@@ -43,7 +43,7 @@ public class ListeRepository {
     public void addEintragToListe(UUID id, String name) {
         Liste listeToReceiveNewEintrag = findById(id);
         Eintrag createdEintrag = eintragRepository.createEintrag(name);
-        listeToReceiveNewEintrag.getEintraege().add(createdEintrag);
+        listeToReceiveNewEintrag.addEintrag(createdEintrag);
     }
 
     private Liste findById(UUID id) {

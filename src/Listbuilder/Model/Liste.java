@@ -1,5 +1,6 @@
 package Listbuilder.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public class Liste {
         this.id = UUID.randomUUID();
         this.erledigt = false;
         this.name = name;
+        this.eintraege = new ArrayList<>();
     }
 
     public UUID getId() {
@@ -49,5 +51,9 @@ public class Liste {
 
     public void setEintraege(List<Eintrag> eintraege) {
         this.eintraege = eintraege;
+    }
+
+    public void addEintrag(Eintrag eintrag) {
+        this.eintraege.add(eintrag);
     }
 }
