@@ -121,7 +121,7 @@ public class Listbuilder {
         printer.printWhichEintragToMark();
         int eintragToMark = reader.readInteger();
         Liste listeToGetEintragMarked = listeRepository.getListe(listeId);
-        UUID eintragId = listeToGetEintragMarked.getEintraege().get(eintragToMark).getId();
+        UUID eintragId = listeToGetEintragMarked.getEintraege().get(eintragToMark - 1).getId();
         eintragRepository.markEintragAsErledigt(eintragId);
         showListeDetails(listeToGetEintragMarked);
     }
