@@ -21,7 +21,7 @@ public class MenuPrinter {
         System.out.println("1. Eintrag hinzufügen");
         System.out.println("2. Eintrag erledigt / nicht erledigt");
         System.out.println("3. Liste erledigt / nicht erledigt");
-        System.out.println("4. List löschen");
+        System.out.println("4. Liste löschen");
     }
 
     public void printAbout() {
@@ -33,6 +33,10 @@ public class MenuPrinter {
 
     public void printEnterListeName() {
         System.out.print("Geben Sie einen Namen für die neue Liste ein: ");
+    }
+
+    public void printEnterEintragName() {
+        System.out.print("Geben Sie einen Namen für den neuen Eintrag ein: ");
     }
 
     public void printListe(int index, Liste liste) {
@@ -61,5 +65,9 @@ public class MenuPrinter {
 
     public void printWhatToDoNext() {
         System.out.println("Was möchten Sie als nächstes Tun?");
+    }
+
+    public void printWhichEintragToMark() {
+        System.out.println("Welchen Eintrag möchten Sie als erledigt markieren? (Zahl eingeben): ");
     }
 }
