@@ -70,4 +70,32 @@ public class TestListeRepository {
         //invoke method under test & assert result
         assertEquals(name, listeRepo.getListe(id).getName());
     }
+
+    @Test
+    public void getAllListenTest() {
+        //prepare
+        ListeRepository listeRepo = new ListeRepository();
+        listeRepo.createListe(name);
+        listeRepo.getAllListen().get(0).setId(id);
+
+        //invoke method under test
+        int size = listeRepo.getAllListen().size();
+
+        //assert result
+        assertEquals(1, size);
+    }
+
+    @Test
+    public void addEintragToListeTest() {
+        //prepare
+        ListeRepository listeRepo = new ListeRepository();
+        listeRepo.createListe(name);
+        listeRepo.getAllListen().get(0).setId(id);
+
+        //invoke method under test
+        listeRepo.addEintragToListe(id, name);
+
+        //assert result
+        assertEquals(1, listeRepo.getListe(id).getEintraege().size());
+    }
 }
