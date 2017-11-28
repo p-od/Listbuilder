@@ -3,6 +3,7 @@ package Listbuilder.Api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 
 public class InputReader {
 
@@ -14,7 +15,12 @@ public class InputReader {
 
     public int readInteger() {
         try {
-            return Integer.parseInt(reader.readLine());
+            String input = reader.readLine();
+            if (input.equals("q") || input.equals("exit")) {
+                System.exit(0);
+            } else {
+                return Integer.parseInt(input);
+            }
         } catch (NumberFormatException e) {
             System.err.println("Ihre Eingabe muss aus einer Zahl bestehen.");
             readInteger();
@@ -26,10 +32,31 @@ public class InputReader {
 
     public String readString() {
         try {
-            return reader.readLine();
+            String input = reader.readLine();
+            if (input.equals("q") || input.equals("exit")) {
+                System.exit(0);
+            } else {
+                return input;
+            }
         } catch (IOException e) {
             System.err.println("Fehler beim Lesen der Eingabe.");
         }
         return null;
+    }
+
+    public boolean confirmInput() throws InputMismatchException {
+        try {
+            String input = reader.readLine();
+            if (input.equalsIgnoreCase("ja")) {
+                return true;
+            } else if (input.equalsIgnoreCase("nein")) {
+                return false;
+            } else {
+                System.err.println("Ungültige Eingabe.");
+            }
+        } catch (IOException e) {
+            System.err.println("Fehler beim Lesen der Eingabe.");
+        }
+        return false;
     }
 }

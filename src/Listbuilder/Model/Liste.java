@@ -56,4 +56,12 @@ public class Liste {
     public void addEintrag(Eintrag eintrag) {
         this.eintraege.add(eintrag);
     }
+
+    public void removeEintrag(Eintrag eintrag) {
+        eintraege.remove(eintrag);
+    }
+
+    public void toggleErledigt() {
+        erledigt = !erledigt;
+    }
 }

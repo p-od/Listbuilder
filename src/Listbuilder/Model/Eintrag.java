@@ -39,4 +39,8 @@ public class Eintrag {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void toggleErledigt() {
+        erledigt = !erledigt;
+    }
 }

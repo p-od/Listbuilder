@@ -13,9 +13,9 @@ public class ListeRepository {
 
     private EintragRepository eintragRepository;
 
-    public ListeRepository() {
+    public ListeRepository(EintragRepository eintragRepository) {
         this.listen = new ArrayList<>();
-        this.eintragRepository = new EintragRepository();
+        this.eintragRepository = eintragRepository;
     }
 
     public Liste getListe(UUID id) {
@@ -35,15 +35,22 @@ public class ListeRepository {
         listen.remove(listeToBeDeleted);
     }
 
-    public void markListeAsErledigt(UUID id) {
+    public void toggleListeErledigt(UUID id) {
         Liste listeToBeMarked = findById(id);
-        listeToBeMarked.setErledigt(true);
+        listeToBeMarked.toggleErledigt();
     }
 
     public void addEintragToListe(UUID id, String name) {
         Liste listeToReceiveNewEintrag = findById(id);
         Eintrag createdEintrag = eintragRepository.createEintrag(name);
         listeToReceiveNewEintrag.addEintrag(createdEintrag);
+    }
+
+    public void deleteEintragFromListe(UUID listeId, UUID eintragId) {
+        Liste listeToHaveEintragDeleted = findById(listeId);
+        Eintrag eintragToBeDeleted = eintragRepository.findById(eintragId);
+        listeToHaveEintragDeleted.removeEintrag(eintragToBeDeleted);
+        eintragRepository.deleteEintrag(eintragToBeDeleted.getId());
     }
 
     private Liste findById(UUID id) {

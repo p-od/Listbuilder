@@ -33,12 +33,12 @@ public class EintragRepository {
         eintraege.remove(eintragToDelete);
     }
 
-    public void markEintragAsErledigt(UUID id) {
+    public void toggleEintragErledigt(UUID id) {
         Eintrag eintragToBeMarked = findById(id);
-        eintragToBeMarked.setErledigt(true);
+        eintragToBeMarked.toggleErledigt();
     }
 
-    private Eintrag findById(UUID id) {
+    public Eintrag findById(UUID id) {
         for (Eintrag eintrag : eintraege) {
             if (eintrag.getId().equals(id)) {
                 return eintrag;
