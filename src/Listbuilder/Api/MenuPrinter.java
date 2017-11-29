@@ -9,8 +9,6 @@ import java.util.List;
 /**
  * Diese Klasse enthält alle Texte, welche zur Laufzeit der Applikation zur Führung des Anwenders in der Konsole ausgegeben werden.
  *
- * @author Gammenthaler Fabian
- * @author Kohler Kevin
  * @author Odermatt Pascal
  */
 public class MenuPrinter {

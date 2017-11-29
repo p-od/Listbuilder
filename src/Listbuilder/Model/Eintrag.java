@@ -2,6 +2,13 @@ package Listbuilder.Model;
 
 import java.util.UUID;
 
+/**
+ * Diese Klasse stellt die Einträge dar, welcher der Anwender einer Liste hinzufügen kann.
+ * Für den Anwender wichtig ist die Angabe, ob der Eintrag erledigt wurde oder nicht,
+ * sowie der Name des Eintrags.
+ *
+ * @author Kohler Kevin
+ */
 public class Eintrag {
 
     private UUID id;
@@ -40,6 +47,9 @@ public class Eintrag {
         this.name = name;
     }
 
+    /**
+     * Ändert den Wert der erledigt-Variable auf 'true', wenn er vorher 'false' war, und auf 'false', wenn er vorher 'true' war.
+     */
     public void toggleErledigt() {
         erledigt = !erledigt;
     }
