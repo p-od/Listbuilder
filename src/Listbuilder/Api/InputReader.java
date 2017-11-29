@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 
 /**
- * Diese Klasse liest die Eingaben des Anwenders in der Konsole ein.
+ * Diese Klasse liest die Eingaben des Anwenders in die Konsole aus.
  *
  * @author Gammenthaler Fabian
  * @author Kohler Kevin
