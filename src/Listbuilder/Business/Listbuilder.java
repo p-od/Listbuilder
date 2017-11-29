@@ -9,6 +9,13 @@ import Listbuilder.Repository.ListeRepository;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Diese Klasse enthält die einzelnen Programmabläufe und den Main Loop der Applikation.
+ *
+ * @author Gammenthaler Fabian
+ * @author Kohler Kevin
+ * @author Odermatt Pascal
+ */
 public class Listbuilder {
 
     private MenuPrinter printer;
@@ -26,6 +33,10 @@ public class Listbuilder {
         this.listeRepository = new ListeRepository(this.eintragRepository);
     }
 
+    /**
+     * Der Startpunkt des Main Loops.
+     * Von hier aus werden die einzelnen Programmabläufe gestartet.
+     */
     public void start() {
         printer.printHeader();
         showMainOptions();
