@@ -11,16 +11,30 @@ import java.util.UUID;
  *
  * Der Liste können Einträge hinzugefügt werden, welche eine Aufgabe, eine Erinnerung o.Ä. darstellen sollen.
  *
+ * @version 1.0
+ *
  * @author Gammenthaler Fabian
  */
 public class Liste {
 
+    /**
+     * Primärschlüssel, um die Liste eindeutig identifizieren zu können.
+     */
     private UUID id;
 
+    /**
+     * Damit kann der Anwender angeben, ob er eine Liste resp. deren Inhalt/Aufgaben erledigt hat oder nicht.
+     */
     private boolean erledigt;
 
+    /**
+     * Name der Liste. Dies kann ein Phantasiename oder beispielsweise eine konkrete Überschrift für eine Gruppe von Aufgaben/Erinnerungen sein.
+     */
     private String name;
 
+    /**
+     * Liste mit Einträgen. Die Einträge sollen Aufgaben/Erinnerungen für den Anwender darstellen.
+     */
     private List<Eintrag> eintraege;
 
     public Liste(String name) {

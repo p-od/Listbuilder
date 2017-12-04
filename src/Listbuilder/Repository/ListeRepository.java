@@ -11,14 +11,22 @@ import java.util.UUID;
  * Diese Klasse verfügt über eine Liste mit allen erstellten Listen.
  * Zudem enthält sie Schnittstellen für create, read und delete.
  *
+ * @version 1.0
+ *
  * @author Gammenthaler Fabian
  * @author Kohler Kevin
  * @author Odermatt Pascal
  */
 public class ListeRepository {
 
+    /**
+     * Liste mit allen Listen, welche zur Laufzeit der Applikation erstellt werden.
+     */
     private List<Liste> listen;
 
+    /**
+     * Link zum EintragRepository, da alle Einträge in ein und demselben EintragRepository hinterlegt werden sollen.
+     */
     private EintragRepository eintragRepository;
 
     public ListeRepository(EintragRepository eintragRepository) {
@@ -102,6 +110,12 @@ public class ListeRepository {
         eintragRepository.deleteEintrag(eintragToBeDeleted.getId());
     }
 
+    /**
+     * Sucht in der Liste mit allen Listen nach dem Eintrag, der die angegebene Id besitzt.
+     *
+     * @param id Die Id der Liste, die gesucht wird.
+     * @return Die Liste mit der angegebenen Id, oder null, wenn keine passende Liste gefunden wurde.
+     */
     private Liste findById(UUID id) {
         for (Liste liste : listen) {
             if (liste.getId().equals(id)) {

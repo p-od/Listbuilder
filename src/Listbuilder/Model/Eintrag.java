@@ -7,14 +7,25 @@ import java.util.UUID;
  * Für den Anwender wichtig ist die Angabe, ob der Eintrag erledigt wurde oder nicht,
  * sowie der Name des Eintrags.
  *
+ * @version 1.0
+ *
  * @author Kohler Kevin
  */
 public class Eintrag {
 
+    /**
+     * Primärschlüssel, um den Eintrag eindeutig identifizieren zu können.
+     */
     private UUID id;
 
+    /**
+     * Damit kann der Anwender angeben, ob er einen Eintrag resp. dessen Inhalt/Aufgabe erledigt hat oder nicht.
+     */
     private boolean erledigt;
 
+    /**
+     * Name des Eintrags. Dies kann ein Phantasiename oder eine konkrete Aufgabenstellung in Form einer Erinnerung sein.
+     */
     private String name;
 
     public Eintrag(String name) {

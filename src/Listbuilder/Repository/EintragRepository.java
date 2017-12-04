@@ -10,12 +10,17 @@ import java.util.UUID;
  * Diese Klasse verfügt über eine Liste mit allen erstellten Einträgen.
  * Zudem enthält sie Schnittstellen für create, read und delete.
  *
+ * @version 1.0
+ *
  * @author Gammenthaler Fabian
  * @author Kohler Kevin
  * @author Odermatt Pascal
  */
 public class EintragRepository {
 
+    /**
+     * Liste mit allen Einträgen, welche zur Laufzeit der Applikation erstellt werden.
+     */
     private List<Eintrag> eintraege;
 
     public EintragRepository() {
@@ -74,7 +79,7 @@ public class EintragRepository {
     }
 
     /**
-     * Suchte in der Liste mit allen Einträgen nach dem Eintrag, der die angegebene Id besitzt.
+     * Sucht in der Liste mit allen Einträgen nach dem Eintrag, der die angegebene Id besitzt.
      *
      * @param id Die Id des Eintrags, der gesucht wird.
      * @return Der Eintrag mit der angegebenen Id, oder null, wenn kein passender Eintrag gefunden wurde.

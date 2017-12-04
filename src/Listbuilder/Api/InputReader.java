@@ -8,12 +8,17 @@ import java.util.InputMismatchException;
 /**
  * Diese Klasse liest die Eingaben des Anwenders in die Konsole aus.
  *
+ * @version 1.0
+ *
  * @author Gammenthaler Fabian
  * @author Kohler Kevin
  * @author Odermatt Pascal
  */
 public class InputReader {
 
+    /**
+     * Wird dazu benutzt, die Eingaben des Anwenders in die Konsole zu erfassen.
+     */
     private BufferedReader reader;
 
     public InputReader() {

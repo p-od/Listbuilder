@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * Diese Klasse enthält alle Texte, welche zur Laufzeit der Applikation zur Führung des Anwenders in der Konsole ausgegeben werden.
  *
+ * @version 1.0
+ *
  * @author Odermatt Pascal
  */
 public class MenuPrinter {
@@ -156,11 +158,9 @@ public class MenuPrinter {
     }
 
     /**
-     * Gibt alle Listen in der Konsole aus.
-     * Ausgegeben wird der Index beginnend mit 1, ein Kennzeichen in eckigen Klammern um anzuzeigen,
-     * ob die Liste als erledigt markiert wurde, sowie der Name der Liste
+     * Iteriert durch eine Liste von Listen und ruft für jede Liste die printListe()-Methode auf.
      *
-     * @param listen Liste mit den Listen, welche in der Konsole ausgegeben werden.
+     * @param listen Liste mit den Listen, welche in der Konsole ausgegeben werden sollen.
      */
     public void printAllListen(List<Liste> listen) {
         for (int i = 0; i < listen.size(); i++) {
@@ -168,6 +168,14 @@ public class MenuPrinter {
         }
     }
 
+    /**
+     * Gibt eine Liste in der Konsole aus.
+     * Ausgegeben wird der Index, ein Kennzeichen in eckigen Klammern um anzuzeigen,
+     * ob die Liste als erledigt markiert wurde, sowie der Name der Liste.
+     *
+     * @param index Index zur eindeutigen Trennung zu anderen Listen.
+     * @param liste Liste, deren Name und erledigt-Zustand in der Konsole ausgegeben werden soll.
+     */
     private void printListe(int index, Liste liste) {
         String erledigtMark = " ";
         if (liste.isErledigt()) {
@@ -178,11 +186,8 @@ public class MenuPrinter {
 
     /**
      * Gibt den Inhalt einer Liste in der Konsole aus.
-     * Ausgegeben wird der Name der Liste, sowie alle darin hinzugefügten Einträge.
-     *
-     * Pro Zeile wird ein Eintrag ausgegeben, welcher einen Index beginnend mit 1,
-     * ein Kennzeichen in eckigen Klammern um anzuzeigen, ob der Eintrag als erledigt markiert wurde,
-     * sowie dem Namen des Eintrags enthält.
+     * Ausgegeben wird der Name der Liste.
+     * Zusätzlich wird durch eine Liste von Einträgen iteriert und für jeden Eintrag die printEintrag()-Methode aufgerufen.
      *
      * @param liste Liste, von welcher der Inhalt in der Konsole ausgegeben wird.
      */
@@ -198,6 +203,14 @@ public class MenuPrinter {
         System.out.println("===================================================");
     }
 
+    /**
+     * Gibt den Inhalt eines Eintrags in der Konsole aus.
+     * Ausgegeben wird der Index, ein Kennzeichen in eckigen Klammern um anzuzeigen,
+     * ob der Eintrag als erledigt markiert wurde, sowie der Name des Eintrags.
+     *
+     * @param index Index zur eindeutigen Trennung zu anderen Einträgen.
+     * @param eintrag Eintrag, dessen Name und erledigt-Zustand in der Konsole ausgegeben werden soll.
+     */
     private void printEintrag(int index, Eintrag eintrag) {
         String erledigtMark = " ";
         if (eintrag.isErledigt()) {
