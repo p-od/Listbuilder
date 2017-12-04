@@ -53,7 +53,7 @@ public class TestListeRepository {
     }
 
     @Test
-    public void markAserledigtTest() {
+    public void toggleListeErledigtTest() {
         //prepare
         EintragRepository eintragRepo = new EintragRepository();
         ListeRepository listeRepo = new ListeRepository(eintragRepo);
@@ -110,5 +110,20 @@ public class TestListeRepository {
 
         //provoke IndexOutOfBoundsException
         eintraege.get(0);
+    }
+
+    @Test
+    public void getAllListenTest() {
+        //prepare
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
+        listeRepo.createListe(name);
+        listeRepo.getAllListen().get(0).setId(id);
+
+        //invoke method under test
+        int size = listeRepo.getAllListen().size();
+
+        //assert result
+        assertEquals(1, size);
     }
 }
