@@ -1,9 +1,13 @@
 package Listbuilder;
 
 
+import Listbuilder.Model.Eintrag;
+import Listbuilder.Repository.EintragRepository;
 import Listbuilder.Repository.ListeRepository;
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +27,8 @@ public class TestListeRepository {
     @Test
     public void createNewListeTest() {
         //prepare
-        ListeRepository listeRepo = new ListeRepository();
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
 
         //invoke method under test
         listeRepo.createListe(name);
@@ -35,7 +40,8 @@ public class TestListeRepository {
     @Test
     public void deleteListeTest() {
         // prepare
-        ListeRepository listeRepo = new ListeRepository();
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
         listeRepo.createListe(name);
         listeRepo.getAllListen().get(0).setId(id);
 
@@ -49,12 +55,13 @@ public class TestListeRepository {
     @Test
     public void markAserledigtTest() {
         //prepare
-        ListeRepository listeRepo = new ListeRepository();
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
         listeRepo.createListe(name);
         listeRepo.getAllListen().get(0).setId(id);
 
         //invoke method under test
-        listeRepo.markListeAsErledigt(id);
+        listeRepo.toggleListeErledigt(id);
 
         //assert result
         assertTrue(listeRepo.getListe(id).isErledigt());
@@ -63,11 +70,45 @@ public class TestListeRepository {
     @Test
     public void getListeTest(){
         //prepare
-        ListeRepository listeRepo = new ListeRepository();
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
         listeRepo.createListe(name);
         listeRepo.getAllListen().get(0).setId(id);
 
         //invoke method under test & assert result
         assertEquals(name, listeRepo.getListe(id).getName());
+    }
+
+    @Test
+    public void addEintragToListeTest() {
+        //prepare
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
+        listeRepo.createListe(name);
+        listeRepo.getAllListen().get(0).setId(id);
+
+        //invoke method under test
+        listeRepo.addEintragToListe(id, "testeintrag");
+
+        //assert result
+        assertEquals("testeintrag", listeRepo.getListe(id).getEintraege().get(0).getName());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void deleteEintragFromListeTest() {
+        //prepare
+        EintragRepository eintragRepo = new EintragRepository();
+        ListeRepository listeRepo = new ListeRepository(eintragRepo);
+        listeRepo.createListe(name);
+        listeRepo.getAllListen().get(0).setId(id);
+        listeRepo.addEintragToListe(id, "testeintrag");
+        List<Eintrag> eintraege = listeRepo.getListe(id).getEintraege();
+        UUID eintragToDeleteId = eintraege.get(0).getId();
+
+        //invoke method under test
+        listeRepo.deleteEintragFromListe(id, eintragToDeleteId);
+
+        //provoke IndexOutOfBoundsException
+        eintraege.get(0);
     }
 }
