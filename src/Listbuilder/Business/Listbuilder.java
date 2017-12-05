@@ -181,13 +181,13 @@ public class Listbuilder {
     private void executeListeOption(int chosenListeOption, UUID listeId) {
         switch (chosenListeOption) {
             case 1:
-                createEintrag(listeId);
+                createEintragInListe(listeId);
                 break;
             case 2:
-                setEintragErledigt(listeId);
+                setEintragErledigtInListe(listeId);
                 break;
             case 3:
-                deleteEintrag(listeId);
+                deleteEintragFromListe(listeId);
                 break;
             case 4:
                 setListeErledigt(listeId);
@@ -213,7 +213,7 @@ public class Listbuilder {
      *
      * @param listeId Id der Liste, welche benötigt wird, um den Eintrag in der korrekte Liste zu erstellen.
      */
-    private void createEintrag(UUID listeId) {
+    private void createEintragInListe(UUID listeId) {
         printer.printEnterEintragName();
         String eintragName = reader.readString();
         listeRepository.addEintragToListe(listeId, eintragName);
@@ -229,7 +229,7 @@ public class Listbuilder {
      *
      * @param listeId Id der Liste, welche benötigt wird, um den Eintrag in der korrekten Liste als erledigt zu markieren.
      */
-    private void setEintragErledigt(UUID listeId) {
+    private void setEintragErledigtInListe(UUID listeId) {
         Liste listeToGetEintragMarked = listeRepository.getListe(listeId);
         checkHasEintrag(listeToGetEintragMarked);
         printer.printWhichEintragToMark();
@@ -267,7 +267,7 @@ public class Listbuilder {
      *
      * @param listeId Id der Liste, welche benötigt wird, um den Eintrag in der korrekten Liste zu löschen.
      */
-    private void deleteEintrag(UUID listeId) {
+    private void deleteEintragFromListe(UUID listeId) {
         Liste listeToGetEintragDeleted = listeRepository.getListe(listeId);
         checkHasEintrag(listeToGetEintragDeleted);
         printer.printWhichEintragToDelete();
